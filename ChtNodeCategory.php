@@ -1,9 +1,6 @@
 <?php
 /* @var $DB moodle_database */
 
-// require_once($CFG->dirroot.'/course/lib.php');
-require_once($CFG->dirroot.'/lib/coursecatlib.php');
-// require_once($CFG->dirroot . "/local/up1_courselist/courselist_tools.php");
 require_once($CFG->dirroot . "/local/up1_courselist/Courselist_cattools.php");
 require_once($CFG->dirroot . "/local/up1_courselist/Courselist_roftools.php");
 
@@ -119,7 +116,7 @@ class ChtNodeCategory extends ChtNode
      */
     private function addCategoryChildren() {
         // get all children categories (standard Moodle)
-        $categories = coursecat::get($this->id)->get_children();
+        $categories = core_course_category::get($this->id)->get_children();
         // then keep only populated ones
         foreach ($categories as $category) {
             $courses = courselist_cattools::get_descendant_courses($category->id);

@@ -22,7 +22,7 @@ function hybridcrawler($maxdepth = 0) {
 
 function internalcrawler($node, $maxdepth, $callbackfn, $extraparams=array()) {
     $total = 0;
-
+echo "I.";
     call_user_func($callbackfn, $node, $extraparams);
     $children = $node->listChildren();
     if ( count($children) == 0 ) {
@@ -30,6 +30,7 @@ function internalcrawler($node, $maxdepth, $callbackfn, $extraparams=array()) {
     }
     if ( $maxdepth == 0  ||  $node->getAbsoluteDepth() < $maxdepth ) {        
         foreach ($children as $child) {
+echo "C.";
             $total += internalcrawler($child, $maxdepth, $callbackfn, $extraparams);
         }
     // echo $total . "\n";
