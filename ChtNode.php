@@ -6,7 +6,7 @@
  * and commented on http://tickets.silecs.info/mantis/view.php?id=2163
  */
 
-require_once($CFG->dirroot . '/report/up1reporting/locallib.php');
+require_once($CFG->dirroot . '/report/up1hybridtree/locallib.php');
 
 abstract class ChtNode
 {
@@ -221,7 +221,7 @@ abstract class ChtNode
         // lien Reporting
         if ($absdepth >= $this->reportdepthmin && $absdepth <= $this->reportdepthmax
                 && !($this instanceof ChtNodeCourse) ) {
-            $url = new moodle_url('/report/up1reporting/exportcsv.php', array('node' => $this->getAbsolutePath()));
+            $url = new moodle_url('/report/up1hybridtree/exportcsv.php', array('node' => $this->getAbsolutePath()));
             $reportlink = html_writer::link($url, '[R]', array('title' => 'Reporting CSV'));
             //** @todo icon (table) instead of [R] ?
         }
