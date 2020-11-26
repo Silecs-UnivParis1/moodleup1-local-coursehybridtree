@@ -33,7 +33,7 @@ class ChtNodeRof extends ChtNode
     }
 
     public function readName() {
-        list($record, ) = rof_get_record($this->id);
+        list($record, ) = \rof_get_record($this->id);
         $this->name = isset($record->name) ? $record->name : '';
         return $this;
     }

@@ -146,7 +146,7 @@ abstract class ChtNode
      * @return string
      */
     public function serialize() {
-        $o = new stdClass();
+        $o = new \stdClass();
         foreach (array('name', 'code', 'component', 'path', 'absolutePath', 'id') as $attr) {
             $o->$attr = $this->$attr;
         }
@@ -221,8 +221,8 @@ abstract class ChtNode
         // lien Reporting
         if ($absdepth >= $this->reportdepthmin && $absdepth <= $this->reportdepthmax
                 && !($this instanceof ChtNodeCourse) ) {
-            $url = new moodle_url('/report/up1hybridtree/exportcsv.php', array('node' => $this->getAbsolutePath()));
-            $reportlink = html_writer::link($url, '[R]', array('title' => 'Reporting CSV'));
+            $url = new \moodle_url('/report/up1hybridtree/exportcsv.php', array('node' => $this->getAbsolutePath()));
+            $reportlink = \html_writer::link($url, '[R]', array('title' => 'Reporting CSV'));
             //** @todo icon (table) instead of [R] ?
         }
         $res = array(

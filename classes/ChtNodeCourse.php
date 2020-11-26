@@ -92,7 +92,7 @@ class ChtNodeCourse extends ChtNode
         global $DB;
         static $courseformatter = null;
         if (!$courseformatter) {
-            $courseformatter = new courselist_format('tree');
+            $courseformatter = new \courselist_format('tree');
         }
         $course = $DB->get_record('course', array('id' => (int) $this->id));
         $crslink = $courseformatter->format_name($course, 'coursetree-name');
