@@ -1,5 +1,9 @@
 <?php
-require_once dirname(__DIR__) . '/up1_courselist/Courselist_format.php';
+namespace local_coursehybridtree;
+
+use \local_coursehybridtree\ChtNode;
+
+require_once $CFG->dirroot . '/local/up1_courselist/Courselist_format.php';
 
 class ChtNodeCourse extends ChtNode
 {
@@ -78,6 +82,12 @@ class ChtNodeCourse extends ChtNode
         return array($this->id);
     }
 
+    /**
+     *
+     * @global moodle_database $DB
+     * @staticvar type $courseformatter
+     * @return string
+     */
     protected function getLabel() {
         global $DB;
         static $courseformatter = null;

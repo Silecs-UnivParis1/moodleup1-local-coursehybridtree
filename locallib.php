@@ -1,9 +1,7 @@
 <?php
-
 /**
- * @package    local
- * @subpackage coursehybridtree
- * @copyright  2014 Silecs {@link http://www.silecs.info/societe}
+ * @package    local_coursehybridtree
+ * @copyright  2014-2020 Silecs {@link http://www.silecs.info/societe}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

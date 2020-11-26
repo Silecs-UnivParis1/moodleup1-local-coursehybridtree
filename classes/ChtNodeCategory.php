@@ -1,5 +1,8 @@
 <?php
-/* @var $DB moodle_database */
+namespace local_coursehybridtree;
+
+use \local_coursehybridtree\ChtNodeCategory;
+use \local_coursehybridtree\ChtNodeRof;
 
 require_once($CFG->dirroot . "/local/up1_courselist/Courselist_cattools.php");
 require_once($CFG->dirroot . "/local/up1_courselist/Courselist_roftools.php");
@@ -12,6 +15,7 @@ class ChtNodeCategory extends ChtNode
     /**
      * @param int $catid
      * @return ChtNodeCategory
+     * @var $DB moodle_database
      */
     static function buildFromCategoryId($catid) {
         global $DB;
@@ -49,7 +53,7 @@ class ChtNodeCategory extends ChtNode
             $this->component = '00';
             return $this->component;
         } else {
-            $this->component = courselist_cattools::get_component_from_category($this->id);
+            $this->component = \courselist_cattools::get_component_from_category($this->id);
             return $this->component;
         }
     }
@@ -78,8 +82,8 @@ class ChtNodeCategory extends ChtNode
             return $this->children;
         }
         $this->children = array();
-        $coursesDescendant = courselist_cattools::get_descendant_courses($this->id);
-        list($coursesRof, $coursesCat) = courselist_roftools::split_courses_from_rof($coursesDescendant, $this->getComponent(), false);
+        $coursesDescendant = \courselist_cattools::get_descendant_courses($this->id);
+        list($coursesRof, $coursesCat) = \courselist_roftools::split_courses_from_rof($coursesDescendant, $this->getComponent(), false);
         if ($this->hasRofChildren()) {
             $this->addRofChildren('/' . $this->id, $coursesRof);
             // if it contains directly courses (rare)...
@@ -96,7 +100,7 @@ class ChtNodeCategory extends ChtNode
      * @return array of courseid
      */
     function listDescendantCourses() {
-        $courses = courselist_cattools::get_descendant_courses($this->id);
+        $courses = \courselist_cattools::get_descendant_courses($this->id);
         return $courses;
     }
 
@@ -116,10 +120,10 @@ class ChtNodeCategory extends ChtNode
      */
     private function addCategoryChildren() {
         // get all children categories (standard Moodle)
-        $categories = core_course_category::get($this->id)->get_children();
+        $categories = \core_course_category::get($this->id)->get_children();
         // then keep only populated ones
         foreach ($categories as $category) {
-            $courses = courselist_cattools::get_descendant_courses($category->id);
+            $courses = \courselist_cattools::get_descendant_courses($category->id);
             $n = count($courses);
 // TODO verbose mode?
 // echo "cat = $category->id  n = $n  crs=" . join(', ', $courses) . "\n";

@@ -1,10 +1,10 @@
 <?php
-
 /*
  * This class (and descendants) purpose is to implement the specifications given at
  * http://paris1-dev.silecs.info/wiki/doku.php/catalogue_des_cours:arbre_des_cours?&#consignes
  * and commented on http://tickets.silecs.info/mantis/view.php?id=2163
  */
+namespace local_coursehybridtree;
 
 require_once($CFG->dirroot . '/report/up1hybridtree/locallib.php');
 

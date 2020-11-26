@@ -1,4 +1,9 @@
 <?php
+namespace local_coursehybridtree;
+
+use \local_coursehybridtree\ChtNodeCourse;
+use \local_coursehybridtree\ChtNodeCategory;
+use \local_coursehybridtree\ChtNode;
 
 require_once($CFG->dirroot . "/local/roftools/roflib.php");
 
@@ -91,8 +96,8 @@ class ChtNodeRof extends ChtNode
             return $this->children;
         }
         $this->children = array();
-        $this->addRofChildren($this->getRofPathId(), courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId()));
-        $this->addCourseChildren(courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId(), false));
+        $this->addRofChildren($this->getRofPathId(), \courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId()));
+        $this->addCourseChildren(\courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId(), false));
         
         // ROF entries are sorted using their name, to cope with eg. "semestre N" 
         usort($this->children, function ($a, $b) { // compare nodes : Courses last, else by name
@@ -125,7 +130,7 @@ class ChtNodeRof extends ChtNode
      * @return array of courseid
      */
     function listDescendantCourses() {
-        $courses = courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId());
+        $courses = \courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId());
         return array_keys($courses);
     }
 
