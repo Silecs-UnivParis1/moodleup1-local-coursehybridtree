@@ -33,8 +33,7 @@ class crawler {
      */
     public function hybridcrawler($node='/cat0') {
         $tree = CourseHybridTree::createTree($node);
-
-        $this->internalcrawler($tree, 'self::printnode');
+        $this->internalcrawler($tree, crawler::class.'::printnode');
     }
 
     /**
