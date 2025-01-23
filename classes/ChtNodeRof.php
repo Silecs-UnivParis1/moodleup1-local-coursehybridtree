@@ -96,9 +96,9 @@ class ChtNodeRof extends ChtNode
             return $this->children;
         }
         $this->children = array();
-        $this->addRofChildren($this->getRofPathId(), \courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId()));
-        $this->addCourseChildren(\courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId(), false));
-        
+        $this->addRofChildren($this->getRofPathId(), \courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId(), true, $this->getCatid()));
+        $this->addCourseChildren(\courselist_roftools::get_courses_from_parent_rofpath($this->getRofPathId(), false, $this->getCatid()));
+
         // ROF entries are sorted using their name, to cope with eg. "semestre N" 
         usort($this->children, function ($a, $b) { // compare nodes : Courses last, else by name
             $dira = (int) ($a instanceof ChtNodeCourse);
@@ -109,7 +109,6 @@ class ChtNodeRof extends ChtNode
                 return ($dira < $dirb ? -1 : 1);
             }
         } );
-
         if ($this->getAbsoluteDepth() > 7) {
             foreach ($this->children as $pos => $child) {
                 if ($child instanceof ChtNodeRof) {
